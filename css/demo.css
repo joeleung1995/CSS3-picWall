@@ -1,0 +1,176 @@
+/*通用样式*/
+* {
+	margin: 0;
+	padding: 0;
+}
+/*用于包裹的父级元素样式*/
+html,
+body,
+.wrapper {
+	width: 100%;
+	height: 100%;
+}
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	background-color: #000;
+}
+.content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 80%;
+	height: 80%;
+	list-style: none;
+}
+
+/*每个图片列表的样式*/
+.content .item {
+	width: 15%;
+	height: 100%;
+	background-color: #999;
+	border-radius: 20px;
+	transition: width 400ms linear, height 400ms linear 400ms;
+}
+.content .item.active {
+	width: 100%;
+}
+.wrapper_active .content .item:not(.active) {
+	width: 0;
+	height: 0;
+} 
+.wrapper_active .content .item {
+	transition: height 400ms linear, width 400ms linear 400ms;
+}
+.item .box {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transition: all 400ms linear;
+}
+
+/*初始化时列表依次向上运动的动画*/
+.item .init {
+	transform: translate3d(0, 100%, 0);
+}
+.item:nth-of-type(2) .box {
+	transition-delay: 100ms; 
+}
+.item:nth-of-type(3) .box {
+	transition-delay: 200ms; 
+}.item:nth-of-type(4) .box {
+	transition-delay: 300ms; 
+}.item:nth-of-type(5) .box {
+	transition-delay: 400ms; 
+}.item:nth-of-type(6) .box {
+	transition-delay: 500ms; 
+}
+
+/*图片样式及点击放大动画*/
+.item .box .bg {
+	position: absolute;
+	background-position: center;
+	background-size: cover;
+	border-radius: 20px;
+	opacity: 0.6;
+	width: 100%;
+	height: 100%;
+	transition: all 200ms linear;
+}
+.item:nth-of-type(1) .box .bg {
+	background-image: url("../img/1.jpg");
+}
+.item:nth-of-type(2) .box .bg {
+	background-image: url("../img/2.jpg");
+}
+.item:nth-of-type(3) .box .bg {
+	background-image: url("../img/3.jpg");
+}
+.item:nth-of-type(4) .box .bg {
+	background-image: url("../img/4.jpg");
+}
+.item:nth-of-type(5) .box .bg {
+	background-image: url("../img/5.jpg");
+}
+.item:nth-of-type(6) .box .bg {
+	background-image: url("../img/6.jpg");
+}
+
+/*中部标题*/
+.text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #fff;
+	font-size: 16px;
+	transition: all 200ms linear 400ms;
+}
+.wrapper_active .text {
+	opacity: 0 !important;
+	transition: all 200ms linear;
+}
+.item:hover .box .bg {
+	opacity: 1;
+}
+.item:hover .box .text {
+	font-size: 26px;
+	font-weight: bold;
+}
+
+/*图片列表上部标题样式及动画*/
+.item .title {
+	position: absolute;
+	width: 100%;
+	height: 100px;
+}
+.name {
+	position: absolute;
+	top: 30px;
+	left: 30px;
+	width: 0;
+	opacity: 0;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	font-weight: bold;
+	color: #fff;
+	transition: all 200ms linear;
+}
+.active .name {
+	opacity: 1 !important;
+	width: 50px !important;
+	transition: all 400ms linear 400ms;
+}
+.delete {
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	width: 0;
+	opacity: 0;
+	height: 30px;
+	transition: all 200ms linear;
+}
+.item .delete::before,
+.item .delete::after {
+ 	position: absolute;
+ 	top: 13px;
+ 	content: '';
+	width : 30px;
+	height: 4px;
+	background-color: #fff;
+	transform: rotate(45deg);
+}
+.item .delete::after {
+	transform: rotate(-45deg);
+}
+.active .delete {
+	opacity: 1;
+	width: 30px;
+	transition: all 400ms linear 400ms;
+}
+
+
+
